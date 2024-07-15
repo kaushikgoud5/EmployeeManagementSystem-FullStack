@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="login-container">
+    <form class="login-form" [formGroup]="loginReactiveForm">
+      <h2>{{!isLogged ? 'Login':'Register'}}</h2>
+      <div class="input-group d-flex" *ngIf="isLogged">
+        <img #profilePic src="../../../assets/images/user-table.jpg" alt="" id="user-img" />
+        <button
+          class="padding-lr btn-accept btn-emp"
+          id="btn-upload"
+          type="button"
+        >
+          <label for="upload-img" class="p-0">Upload Profile Picture</label>
+        </button>
+        <input type="file" class="d-none" name="upload-image" id="upload-img"  (change)="onChangeImageUpload($event,profilePic)"/>
+      </div>
+
+
+      <div class="input-group" *ngIf="isLogged">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" formControlName="username" required> 
+         <div
+            *ngIf="
+              loginReactiveForm.get('username').invalid &&
+              loginReactiveForm.get('username').touched
+            "
+          >
+            <small
+              class="fs-10 validation"
+              *ngIf="loginReactiveForm.get('username').errors?.['required']"
+            >
+              *Username cannot be empty
+            </small>
+          </div>
+      </div>
+    
+     <div class="input-group" >
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" formControlName="email" required>
+        <div
+        *ngIf="
+          loginReactiveForm.get('email').invalid &&
+          loginReactiveForm.get('email').touched
+        "
+      >
+        <small
+          class="fs-10 validation"
+          *ngIf="loginReactiveForm.get('email').errors?.['required']"
+        >
+          Email cannot be empty
+        </small>
+        <small
+          class="fs-10 validation"
+          *ngIf="loginReactiveForm.get('email').errors?.['email']"
+        >
+          Not a valid email pattern
+        </small>
+      </div>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" formControlName="password" required>
+        <div
+        *ngIf="
+          loginReactiveForm.get('password').invalid &&
+          loginReactiveForm.get('password').touched
+        "
+      >
+        <small
+          class="fs-10 validation"
+          *ngIf="loginReactiveForm.get('password').errors?.['required']"
+        >
+          Password cannot be empty
+        </small>
+        <small
+          class="fs-10 validation"
+          *ngIf="loginReactiveForm.get('password').errors?.['minLength']"
+        >
+          Minimum Length is 8
+        </small>
+      </div>
+      </div>
+      <button type="submit" class="btn" (click)="onClickLogin(loginReactiveForm)" >{{!isLogged?'Login':'Register'}}</button>
+      <p class="signup-link">{{isLogged? 'Already have an account?': 'Do not have an account?'}}</p>
+        <button class="create-btn" (click)="SwitchMode()">{{!isLogged?'Create new account':'Login'}}</button>
+    </form>
+  </div>
+</div>

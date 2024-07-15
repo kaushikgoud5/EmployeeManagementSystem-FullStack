@@ -1,0 +1,35 @@
+<div class="sidebar d-flex align-items-center">
+  <div class="top-search-bar">
+    <div class="search-container">
+      <input type="search" placeholder="Search" id="search-input" />
+    </div>
+    <div class="icon-group d-flex">
+      <div class="icon-buttons">
+        <img src="../../../assets/images/IconButton.png" alt="Icon Button" />
+        <img src="../../../assets/images/icon1.png" alt="Icon 1" />
+        <img src="../../../assets/images/icon2.png" (click)="onClickToggleDarkMode()" alt="Icon 2" />
+        <img src="../../../assets/images/icon3.png" alt="Icon 3" />
+        <img
+          class="profile-image"
+          [src]="imageSrc"
+          name="image"
+          alt="User Profile"
+        />
+      </div>
+      <div class="user-details">
+        <span class="user-name">{{username.toUpperCase()}}</span>
+        <br />
+        <span class="user-role">Admin</span>
+      </div>
+      <div class="drop-down-arrow" (click)="showLogOut()">
+        <i class="ph-bold ph-caret-down"></i>
+      </div>
+
+      <span class="logout">
+        <button class="button" *ngIf="islogged" (click)="onClickLogout()">
+          Logout
+        </button>
+      </span>
+    </div>
+  </div>
+</div>

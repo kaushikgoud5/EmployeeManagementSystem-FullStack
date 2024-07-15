@@ -1,0 +1,54 @@
+<div class="description-cards">
+  <div class="card-item" *ngFor="let role of rolesData">
+    <div class="card-item-top d-flex jc-space-btwn align-items-center">
+      <div class="card-item-title">
+        <h5>{{role['role']}}</h5>
+      </div>
+      <div class="card-item-edit c-pointer">
+        <img src="../../../../assets/images/edit.svg" alt="" />
+      </div>
+    </div>
+
+    <div class="user-details">
+      <div class="user-details-item jc-space-btwn">
+        <div class="user-detail ">
+          <img src="../../../../assets/images/team_svgrepo.com.svg" alt="" />
+          <span>Department</span>
+        </div>
+        <div class="user-detail-ans">
+          <span>{{role['department']}}</span>
+        </div>
+      </div>
+      <div class="user-details-item jc-space-btwn">
+        <div class="user-detail">
+          <img
+            src="../../../../assets/images/location-pin-alt-1_svgrepo.com.svg"
+            alt=""
+          />
+          <span>Location</span>
+        </div>
+        <div class="user-detail-ans">
+          <span>{{role['location']}}</span>
+        </div>
+      </div>
+      <div class="user-details-item jc-space-btwn">
+        <div class="user-detail">
+          <span>Total Employees</span>
+        </div>
+        <div class="user-detail-ans">
+          <span><img src="./assets/" alt="" />{{role['employeeCount']}}</span>
+        </div>
+      </div>
+    </div>
+    <a href="" class="td-none" routerLink="roleDetails" [state]="role">
+       <div class="view">
+      <div>View all Employees</div>
+
+      <div>
+        <img src="../../../../assets/images/Vector.svg" alt="" />
+      </div>
+    </div> 
+    </a>
+    
+  </div>
+</div>

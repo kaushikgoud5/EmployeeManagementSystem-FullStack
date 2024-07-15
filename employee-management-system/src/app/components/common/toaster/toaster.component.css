@@ -1,0 +1,64 @@
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+  
+  .toaster-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .toast {
+    display: flex;
+    align-items: center;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  .toast.slide-out {
+    animation: slideOut 0.5s ease-out;
+  }
+  
+  .toast.success {
+    background: green;
+  }
+  
+  .toast.error {
+    background: red;
+  }
+  
+  .toast.info {
+    background: blue;
+  }
+  
+  .toast button {
+    margin-left: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  

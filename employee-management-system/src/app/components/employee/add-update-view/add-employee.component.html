@@ -1,0 +1,449 @@
+<div class="employee-form-container">
+  <form name="employee-form" [formGroup]="reactiveForm">
+    <h4 id="add-employee">Add Employee</h4>
+    <div class="d-flex g-3" id="inp-form">
+      <div class="inp-form-profile">
+        <img
+          #profilePic
+          src="../../../assets/images/user-table.jpg"
+          alt=""
+          id="user-img"
+        />
+        <label for="upload-img" class="d-flex" id="edit">Edit</label>
+        <button
+          class="padding-lr btn-accept btn-emp"
+          id="btn-upload"
+          type="button"
+        >
+          <label for="upload-img" class="p-0">Upload Profile Picture</label>
+        </button>
+        <input
+          type="file"
+          name="upload-image"
+          id="upload-img"
+          (change)="onChangeImageUpload($event, profilePic)"
+        />
+      </div>
+      <div class="inp-form-info">
+        <h5>Personal Information</h5>
+        <div class="inp-form-row-1">
+          <label for="" class="d-block"
+            >Emp No
+            <i class="ph-bold ph-asterisk c-p star-validation"
+              ><span class="tool-tip-text">Required</span></i
+            ></label
+          >
+
+          <input
+            class="d-block"
+            type="text"
+            name="emp-no"
+            id="emp-no"
+            formControlName="empId"
+            placeholder="EX: TZ123"
+          />
+          <p class="m-0 validation-msg d-none" id="validate-msg-emp-no">
+            <span><i class="ph-fill ph-warning-diamond"></i></span> This field
+            is required
+          </p>
+          <div
+            *ngIf="
+              reactiveForm.get('empId').invalid &&
+              reactiveForm.get('empId').touched
+            "
+          >
+            <small
+              class="fs-10 validation"
+              *ngIf="reactiveForm.get('empId').errors?.['pattern']"
+            >
+              Employee ID must start with TZ followed by 4 digits.
+            </small>
+            <small
+              class="fs-10 validation"
+              *ngIf="reactiveForm.get('empId').errors?.['uniqueEmployeeId']"
+            >
+              Employee ID already exists.
+            </small>
+          </div>
+        </div>
+
+        <div class="inp-form-rows inp-form-row-1">
+          <div class="col-1">
+            <label for=""
+              >First Name
+              <i class="ph-bold ph-asterisk c-p star-validation"
+                ><span class="tool-tip-text">Required</span></i
+              ></label
+            ><br />
+            <input
+              type="text"
+              name="fname"
+              id="fname"
+              placeholder="EX:Joe"
+              formControlName="firstname"
+            />
+            <p class="m-0 validation-msg d-none" id="validate-msg-fname">
+              <span><i class="ph-fill ph-warning-diamond"></i></span>
+              This field is required
+            </p>
+            <br />
+            <div
+              *ngIf="
+                reactiveForm.get('firstname').invalid &&
+                reactiveForm.get('firstname').touched
+              "
+            >
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('firstname').errors?.['noSpaceAllowed']"
+              >
+                No spaces allowed in the first name.
+              </small>
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('firstname').touched && reactiveForm.get('firstname').errors?.['required']"
+              >
+                It cannot be empty
+              </small>
+            </div>
+          </div>
+
+          <div class="col-2">
+            <label for=""
+              >Last Name
+              <i class="ph-bold ph-asterisk c-p star-validation"
+                ><span class="tool-tip-text">Required</span></i
+              ></label
+            ><br />
+            <input
+              type="text"
+              name="lname"
+              id="lname"
+              placeholder="EX: James"
+              formControlName="lastname"
+            />
+            <p class="m-0 validation-msg d-none" id="validate-msg-lname">
+              <span><i class="ph-fill ph-warning-diamond"></i></span>
+              This field is required
+            </p>
+            <br />
+            <div
+              *ngIf="
+                reactiveForm.get('lastname').invalid &&
+                reactiveForm.get('lastname').touched
+              "
+            >
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('lastname').errors?.['noSpaceAllowed']"
+              >
+                No spaces allowed in the last name.
+              </small>
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('lastname').touched && reactiveForm.get('lastname').errors?.['required']"
+              >
+                It cannot be empty
+              </small>
+            </div>
+          </div>
+          <div class="col-3">
+            <label for="">Date of Birth</label><br />
+            <input type="date" name="dob" id="dob" formControlName="dob" />
+          </div>
+        </div>
+        <div class="inp-form-rows inp-form-row-1">
+          <div class="col-1">
+            <label for=""
+              >Email Id
+              <i class="ph-bold ph-asterisk c-p star-validation"
+                ><span class="tool-tip-text">Required</span></i
+              ></label
+            ><br />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Joe.j@technovert.com"
+              formControlName="email"
+            />
+            <p class="m-0 validation-msg d-none" id="validate-msg-email">
+              <span><i class="ph-fill ph-warning-diamond"></i></span>
+              This field is required
+            </p>
+            <div
+              *ngIf="
+                reactiveForm.get('email').invalid &&
+                reactiveForm.get('email').touched
+              "
+            >
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('email').errors?.['email']"
+              >
+                Not a valid email
+              </small>
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('email').errors?.['noSpaceAllowed']"
+              >
+                No spaces allowed in the email .
+              </small>
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('email').errors?.['required']"
+              >
+                It cannot be empty
+              </small>
+            </div>
+          </div>
+          <div class="col-2">
+            <label for="">Mobile Number</label><br />
+            <input
+              type="number"
+              name="phone"
+              id="mobile"
+              placeholder="0000000000"
+              formControlName="phone"
+            />
+            <p class="m-0 validation-msg d-none" id="validate-msg-mobile">
+              <span><i class="ph-fill ph-warning-diamond"></i></span>
+              This field is required
+            </p>
+            <div
+              *ngIf="
+                reactiveForm.get('phone').invalid &&
+                reactiveForm.get('phone').touched
+              "
+            >
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('phone').errors?.['pattern']"
+              >
+                Mobile number should be exactly 10 digits
+              </small>
+            </div>
+          </div>
+        </div>
+        <h5>Employement Information</h5>
+        <div class="inp-form-rows inp-form-row-2">
+          <div class="col-1">
+            <label for=""
+              >Joining Date
+              <i class="ph-bold ph-asterisk c-p star-validation"
+                ><span class="tool-tip-text">Required</span></i
+              ></label
+            ><br />
+            <input
+              placeholder="mm/dd/yyyy"
+              type="date"
+              name="jdate"
+              id="jdate"
+              formControlName="joinDate"
+            />
+
+            <p class="m-0 validation-msg d-none" id="validate-msg-jdate">
+              <span><i class="ph-fill ph-warning-diamond"></i></span>
+              This field is required
+            </p>
+            <div>
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.errors?.['invalidJoiningDate']"
+              >
+                *invalid DOB,Joining Date should exceed DOB atleast 18years
+              </small>
+            </div>
+            <div
+              *ngIf="
+                reactiveForm.get('joinDate').invalid &&
+                reactiveForm.get('joinDate').touched
+              "
+            >
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('joinDate').errors?.['required']"
+              >
+                *join date is required
+              </small>
+            </div>
+          </div>
+          <div class="col-2">
+            <label for="">Department</label><br />
+            <select
+              (ngModelChange)="onChangeDepartment($event)"
+              name="dept"
+              id="dept-inp-form"
+              formControlName="department"
+            >
+              <option value="" selected disabled>Select your Department</option>
+              <option
+                value=""
+                *ngFor="let department of departments"
+                [ngValue]="department.departmentId"
+              >
+                {{ department["departmentName"] }}
+              </option></select
+            ><br />
+            <div
+              *ngIf="
+                reactiveForm.get('department').invalid &&
+                reactiveForm.get('department').touched
+              "
+            >
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('department').errors?.['required']"
+              >
+                *department is required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="inp-form-rows inp-form-row-2">
+          <div class="col-1">
+            <label for="">Job Title</label><br />
+            <select name="job-title" id="job-title" formControlName="jobTitle">
+              <option value="" selected disabled>Select your Job Title</option>
+              <option
+                value=""
+                *ngFor="let role of fetchedRoles"
+                [ngValue]="role.id"
+              >
+                {{ role["name"] }}
+              </option></select
+            ><br />
+            <small
+              class="fs-10 validation"
+              *ngIf="
+                reactiveForm.get('department').touched &&
+                fetchedRoles.length == 0
+              "
+              >*There are no job titles in selected department!! Create in
+              roles</small
+            >
+          </div>
+
+          <div class="col-2">
+            <label for="">Location</label><br />
+            <select name="location" id="location" formControlName="location">
+              <option value="" selected disabled>Select your Location</option>
+              <option
+                *ngFor="let location of locations"
+                [ngValue]="location.locationId"
+              >
+                {{ location["locationName"] }}
+              </option>
+            </select>
+            <br />
+            <div
+              *ngIf="
+                reactiveForm.get('location').invalid &&
+                reactiveForm.get('location').touched
+              "
+            >
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('location').errors?.['required']"
+              >
+                *location is required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="inp-form-rows inp-form-row-2">
+          <div class="col-1">
+            <label for="">Assign Manager</label><br />
+            <select name="assign" id="assign-job" formControlName="manager">
+              <option value="" selected disabled>Search</option>
+              <option
+                value=""
+                *ngFor="let manager of managers"
+                [ngValue]="manager"
+              >
+                {{ manager }}
+              </option>
+            </select>
+            <br />
+            <div
+              *ngIf="
+                reactiveForm.get('manager').invalid &&
+                reactiveForm.get('manager').touched
+              "
+            >
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('manager').errors?.['required']"
+              >
+                *manager is required
+              </small>
+            </div>
+          </div>
+          <div class="col-2">
+            <label for="">Assign Project</label><br />
+            <select
+              name="assign-proj"
+              id="assign-inp-proj"
+              formControlName="project"
+            >
+              <option value="" selected disabled>Search</option>
+              <option
+                *ngFor="let project of projects"
+                [ngValue]="project.projectId"
+              >
+                {{ project["projectName"] }}
+              </option>
+            </select>
+            <br />
+            <div
+              *ngIf="
+                reactiveForm.get('project').invalid &&
+                reactiveForm.get('project').touched
+              "
+            >
+              <small
+                class="fs-10 validation"
+                *ngIf="reactiveForm.get('project').errors?.['required']"
+              >
+                *project is required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="inp-form-btns mt-20">
+          <a class="td-none"
+            ><button
+              class="btn-dismiss padding-lr"
+              type="button"
+              (click)="onClickGoBack()"
+            >
+              Cancel
+            </button></a
+          >
+          <button
+            id="btn-employee"
+            class="btn-accept padding-lr"
+            (click)="onClickUpdateEmployee()"
+            type="button"
+            *ngIf="action == 3"
+            [ngStyle]="{ opacity: reactiveForm.invalid ? 0.4 : 1 }"
+            [disabled]="reactiveForm.invalid"
+          >
+            Update Employee
+          </button>
+          <button
+            id="btn-employee"
+            class="btn-accept padding-lr"
+            (click)="onClickAddEmployee()"
+            type="button"
+            *ngIf="action == 1"
+            [ngStyle]="{ opacity: reactiveForm.invalid ? 0.4 : 1 }"
+            [disabled]="reactiveForm.invalid"
+          >
+            Add Employee
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

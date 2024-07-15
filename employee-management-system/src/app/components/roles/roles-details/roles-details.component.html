@@ -1,0 +1,92 @@
+  <div class="d-flex jc-space-btwn align-items-center mt-20">
+    <div class="breadcrumb-section">
+      <nav class="breadcrumb-nav">
+        <ul>
+          <li><a href="#" routerLink="/roles">Roles</a></li>
+          <li><a href="#">Employees</a></li>
+        </ul>
+      </nav>
+      <span class="breadcrumb-description"
+        >All the roles are configured here</span
+      >
+    </div>
+    <div class="button-group d-flex">
+      <a href="" class="td-none" routerLink="addEmployee">
+         <button class="btn-item btn-bg-red">
+        <div>
+          <i class="ph-bold ph-plus"></i>
+        </div>
+        <span> ADD EMPLOYEE </span>
+      </button>
+      </a>
+     
+    </div>
+  </div>
+  <div class="role-description">
+    <h4>Role Description</h4>
+    <p>
+      Configure the providers that are available to users when they sihn in. Congigure the providers that are available to users when they sign in. Configure the providers that are
+      available  to users when they sign in.
+    </p>
+  </div>
+
+  <div class="description-cards">
+    <div class="card-item" *ngFor="let role of data">
+        <div class="user-profile-card">
+          <div class="user-img">
+            <img
+              [src]="role.image"
+              width="35px"
+              alt=""
+            />
+          </div>
+          <span class="user-info">
+            <span class="user">{{role.firstname+" "+role.lastname}}</span>
+            <span class="user-designation">{{role.role}}</span>
+          </span>
+        </div>
+        <div class="user-details">
+          <div class="user-details-item">
+            <div class="img-user">
+              <img src="../../../assets/images/Vector_roles(1).svg" alt="" />
+            </div>
+            <div class="user-name">
+              <span>{{role.id}}</span>
+            </div>
+          </div>
+          <div class="user-details-item">
+            <div class="img-user">
+              <img src="../../../assets/images/email-1_svgrepo.com.svg " alt="" />
+            </div>
+            <div class="user-name">
+              <span>{{role.email}}</span>
+            </div>
+          </div>
+          <div class="user-details-item">
+            <div class="img-user">
+              <img src="../../../assets/images/team_svgrepo.com.svg" alt="" />
+            </div>
+            <div class="user-name">
+              <span>{{role.department}}</span>
+            </div>
+          </div>
+          <div class="user-details-item">
+            <div class="img-user">
+              <img
+                src="../../../assets/images/location-pin-alt-1_svgrepo.com.svg"
+                alt=""
+              />
+            </div>
+            <div class="user-name">
+              <span>{{role.location}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="view">
+          <div> View </div>
+          <div>
+            <img src="../../../assets/images/Vector.svg" alt="" />
+          </div>
+        </div>
+      </div>
+  </div>

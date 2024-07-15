@@ -1,0 +1,97 @@
+.side-nav {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 15px;
+  width: 220px;
+  height: 100vh;
+  position: fixed;
+}
+.hide-navbar {
+  width: 5rem;
+}
+.trim-logo {
+  width: 35px;
+  overflow: hidden;
+}
+.side-menu > span {
+  color: #bdc5cc;
+  font-size: 12px;
+  padding: 5px 7px;
+}
+.menu-item {
+  display: flex;
+  color: var(--gray);
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 7px;
+  border-radius: 5px;
+  align-items: center;
+  height: 2rem;
+  width: 85%;
+}
+.menu-item-label {
+  width: 80%;
+  padding-left: 8px;
+}
+.side-red::before {
+  content: "";
+  background-color: red;
+  width: 5px;
+  height: 2.5rem;
+  position: absolute;
+  right: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.bg-light-red-theme {
+  background-color: #fde9e9 ;
+  color: #f66b6b  ; 
+
+  
+}
+.bg-light-red-theme>div {
+  background-color: #fde9e9 ;
+  color: #f66b6b  ; 
+
+  
+}
+.update-notification {
+  background-color: #fef6f6;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 1.8rem;
+}
+.update-title {
+  color: #f55555;
+  font-weight: bold;
+  font-size: 12px;
+}
+.update-description {
+  color: #b9b9b9;
+  font-size: 12px;
+}
+.action-btns {
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.rotate-arrow {
+  transform: rotate(180deg);
+  transition-duration: 1s;
+}
+.rotate-arrow-left{
+  transform: rotate(0deg);
+  transition-duration: 1s;
+}
+.active{
+  background-color: #fde9e9 ;
+  color: #f66b6b  ;
+}

@@ -1,0 +1,39 @@
+.description-cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .card-item {
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    margin: 10px 10px 10px 0px;
+    padding: 1rem;
+    width: 28%;
+  }
+
+ 
+  .user-details {
+    margin: 10px 0px;
+  }
+  .user-detail {
+    display: flex;
+    align-items: center;
+  }
+  .user-name {
+    padding-left: 1rem;
+  }
+  .user-details-item {
+    color: #686e73;
+    display: flex;
+    padding: 3px;
+    font-size: 12px;
+    font-weight: bold;
+  }  
+  .view {
+    cursor: pointer;
+    display: flex;
+    justify-content: end;
+    font-size: 12px;
+  }
+  .view img {
+    padding: 3px;
+  }

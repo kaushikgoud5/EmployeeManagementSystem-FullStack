@@ -1,0 +1,144 @@
+<section
+  class="side-nav"
+  id="side-nav-bar"
+  [ngClass]="isSideMenuHidden ? '' : 'hide-navbar'"
+>
+  <div>
+    <div class="logo d-flex jc-space-btwn">
+      <div
+        class="logo-tezo"
+        id="nav-hide-logo"
+        [ngClass]="isSideMenuHidden ? '' : 'trim-logo'"
+      >
+        <img src="../../../assets/images/TezoLogo.svg" alt="tezo logo-tezo" />
+      </div>
+      <div
+        class="close-button c-pointer"
+        [ngClass]="isSideMenuHidden ? 'rotate-arrow-left' : 'rotate-arrow'"
+      >
+        <img
+          id="close-btn"
+          src="../../../assets/images/handle.png"
+          alt="handle-icon"
+          (click)="SwitchMode()"
+        />
+      </div>
+    </div>
+
+    <div class="side-menu mt-20">
+      <span
+        class="menu-title"
+        [ngStyle]="isSideMenuHidden ? { '': '' } : { visibility: 'hidden' }"
+        >ALL</span
+      >
+     
+      <div class="menu-items-container mt-20">
+        <a href="" routerLink="/dashboard" class="td-none"  routerLinkActive="bg-light-red-theme side-red">
+        <div class="menu-item">
+          <div class="menu-item-icon">
+            <img
+              class="d-flex"
+              src="../../../assets/images/Dashboard.svg"
+              alt=""
+            />
+          </div>
+          <div class="menu-item-label">
+            <span class="menu-item-text" *ngIf="isSideMenuHidden"
+              >Dashboard</span
+            >
+          </div>
+        </div>
+        </a>
+        <a
+          href=""
+          class="td-none"
+          routerLink="employee"
+          routerLinkActive="bg-light-red-theme side-red"
+     
+        >
+          <div class="menu-item">
+            <div>
+              <img
+                class="d-flex"
+                [src]="'../../../assets/images/'+currentemployee+'.svg'"
+                alt=""
+              />
+            </div>
+            <div class="menu-item-label">
+              <span class="menu-item-text" *ngIf="isSideMenuHidden"
+                >Employees</span
+              >
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="side-menu mt-20">
+      <span
+        class="menu-title"
+        [ngStyle]="isSideMenuHidden ? { '': '' } : { visibility: 'hidden' }"
+        >ROLE / USER MANAGEMENT</span
+      >
+      <div class="mt-20 menu-items-container">
+        <a
+          href=""
+          routerLink="roles"
+          routerLinkActive="bg-light-red-theme side-red"
+          class="td-none"
+          #current
+        >
+          <div class="menu-item">
+            <div class="menu-item-icon">
+              <img
+                class="d-flex"
+                [src]="'../../../assets/images/'+imgSrc+'.svg'"
+                alt=""
+              />
+            </div>
+            <div class="menu-item-label">
+              <span class="menu-item-text" *ngIf="isSideMenuHidden">Roles</span>
+            </div>
+            <div class="arrow-right" id="arrow-right">
+              <i class="ph-bold ph-caret-right"></i>
+            </div>
+          </div>
+        </a>
+        <a href="" routerLink="access" class="td-none" routerLinkActive="bg-light-red-theme side-red">
+           <div class="menu-item">
+          <div class="menu-item-icon">
+            <img
+              class="d-flex"
+              src="../../../assets/images/assign user.svg"
+              alt=""
+            />
+          </div>
+          <div class="menu-item-label">
+            <span class="menu-item-text" *ngIf="isSideMenuHidden"
+              >Access rights</span
+            >
+          </div>
+          <div class="arrow-right">
+            <i class="ph-bold ph-caret-right"></i>
+          </div>
+        </div></a>
+       
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="isSideMenuHidden"
+    class="update-notification"
+    id="hide-install-box"
+  >
+    <p class="update-title">Install new update 2.3.1A</p>
+    <p class="update-description">
+      Allow to launch the new update for the AD application
+    </p>
+    <div class="accept-reject-btns d-flex">
+      <button class="action-btns btn-dismiss">Dismiss</button>
+      <button class="action-btns btn-accept">Accept</button>
+    </div>
+  </div>
+</section>

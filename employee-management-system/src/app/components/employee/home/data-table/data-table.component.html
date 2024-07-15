@@ -1,0 +1,152 @@
+<div class="emp-table">
+  <div class="table-top">
+    <div class="delete">
+      <img src="../../../assets/images/arrow-turn left -down.svg" alt="" />
+      <button
+        class="btn-delete {{ selectedCheckCount == 0 ? 'button-disabled' : 'button-enabled' }}"
+        id="btn-delete-active"
+        [disabled]="selectedCheckCount===0"
+        (click)="onClickDeleteEmployee()"
+      >
+        Delete
+      </button>
+    </div>
+    <div class="add-table">
+      <img src="../../../assets/images/table-add.svg" alt="" />
+    </div>
+  </div>
+  <table #employeeTable>
+    <thead>
+      <tr>
+        <th>
+          <input
+            type="checkbox"
+            id="inp-check-box"
+            #select
+            [checked]="isSelectAllChecked"
+            (click)="onClickSelectAllCheckBoxes(select)"
+          />
+        </th>
+        <th>
+          USER
+          <img
+            src="../../../assets/images/sort.png"
+            width="10px"
+            class="c-pointer"
+            (click)="sortEmployeeData('firstName')"
+            id="sort-btn"
+            alt=""
+          />
+        </th>
+        <th>
+          LOCATION
+          <img
+            src="../../../assets/images/sort.png"
+            width="10px"
+            class="c-pointer"
+            (click)="sortEmployeeData('location')"
+            id="sort-btn"
+            alt=""
+          />
+        </th>
+        <th>
+          DEPARTMENT<img
+            src="../../../assets/images/sort.png"
+            width="10px"
+            class="c-pointer"
+            (click)="sortEmployeeData('department')"
+            id="sort-btn"
+            alt=""
+          />
+        </th>
+        <th>
+          ROLE
+          <img
+            src="../../../assets/images/sort.png"
+            width="10px"
+            class="c-pointer"
+            (click)="sortEmployeeData('role')"
+            id="sort-btn"
+            alt=""
+          />
+        </th>
+        <th>
+          EMP NO<img
+            src="../../../assets/images/sort.png"
+            width="10px"
+            class="c-pointer"
+            (click)="sortEmployeeData('empId')"
+            id="sort-btn"
+            alt=""
+          />
+        </th>
+        <th>
+          STATUS
+          <img
+            src="../../../assets/images/sort.png"
+            width="10px"
+            class="c-pointer"
+            id="sort-btn"
+            alt=""
+          />
+        </th>
+        <th>
+          JOIN DT
+          <img
+            src="../../../assets/images/sort.png"
+            width="10px"
+            class="c-pointer"
+            (click)="sortEmployeeData('joinDate')"
+            id="sort-btn"
+            alt=""
+          />
+        </th>
+        <th>...</th>
+      </tr>
+    </thead>
+    <tbody id="employee-table">
+      <tr id="" *ngFor="let data of data; let i = index">
+        <td><input type="checkbox" class="inp-check" id="" #check (click)="onClickSingleCheckBox(check,data.id)"  [checked]="data.isChecked"/></td>
+        <td>
+          <div
+            class="table-user-info d-flex align-items-center"
+            id="user-profile"
+          >
+            <img [src]="data.image" alt="" />
+            <div class="name-email d-flex d-flex-col">
+              <span>{{ data.firstname + " " + data.lastname }}</span
+              ><span class="e-mail fs-10">{{ data.email }}</span>
+            </div>
+          </div>
+        </td>
+        <td>{{ data.location }}</td>
+        <td>{{ data.department }}</td>
+        <td>{{ data.role }}</td>
+        <td>{{ data.id }}</td>
+        <td><span id="status-bg">Active</span></td>
+        <td>{{ data.joinDate.split("T")[0] }}</td>
+        <td class="c-pointer">
+          <span (click)="SwitchEllipsis($event, i)">...</span>
+          <div
+            class="d-flex c-pointerointer d-none align-items-center ellipsis"
+            [id]="'ellipsis-table-' + i"
+          >
+            <a href="" class="td-none" [routerLink]="'addEmployee/view/'+data.id">
+              <span class="c-pointer">View Details</span>
+            </a>
+            <a
+              href=""
+              class="td-none"
+              [routerLink]="'addEmployee/' + data.id"
+            >
+              <span class="c-pointer">Edit</span>
+            </a>
+            <span class="c-pointer" (click)="onClickDelete(data.id)"
+              >Delete</span
+            >
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

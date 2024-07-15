@@ -1,0 +1,7 @@
+<main>
+    <app-side-menu (eventEmmiter)="isNavHidden($event)"></app-side-menu>
+    <section [ngClass]="isSideBarHidden ? '' : 'ml-100'">
+      <app-navbar></app-navbar>
+      <router-outlet></router-outlet>
+    </section>
+</main>

@@ -1,0 +1,117 @@
+.inp-form-profile input {
+    display: none;
+  }
+  .inp-form-profile label {
+    text-align: center;
+    padding-top: 1rem;
+    padding-left: 2rem;
+  }
+  .inp-form-profile img {
+    width: 100px;
+    height: 80px;
+  }
+  .btn-emp {
+    display: none;
+  } 
+  .inp-form-info label {
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--gray);
+  }
+  .inp-form-rows {
+    padding: 10px 0px;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .inp-form-info input::placeholder,
+input[type="date"] {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.inp-form-row-1 input {
+  border: 2px solid #e1e3e7;
+  outline-color: rgb(108, 108, 223);
+  width: 13rem;
+  height: 1.5rem;
+  padding: 2px 5px;
+  margin-top: 5px;
+}
+.inp-form-row-2 input {
+    border: 2px solid #e1e3e7;
+    outline-color: rgb(108, 108, 223);
+    width: 20rem;
+    height: 1.5rem;
+    padding: 2px 5px;
+    margin-top: 5px;
+  }
+  .text-area {
+    outline-color: rgb(108, 108, 223);
+    padding: 2px 5px;
+    margin-top: 5px;
+  }
+  .inp-form-row-2 select {
+    outline-color: rgb(108, 108, 223);
+    border: 0;
+    background-color: #f4f5f7;
+    width: 21rem;
+    height: 2rem;
+    padding: 2px 5px;
+    margin-top: 5px;
+  }
+  
+  .inp-form-btns {
+    display: flex;
+    justify-content: end;
+  }
+  .inp-form-profile input {
+    display: none;
+  }
+  .inp-form-profile label {
+    text-align: center;
+    padding-top: 1rem;
+    padding-left: 2rem;
+  }
+  .inp-form-profile img {
+    width: 100px;
+    height: 80px;
+  }
+  .star-validation {
+    position: relative;
+    color: red;
+  }
+  
+  .star-validation:hover .tool-tip-text {
+    visibility: visible;
+  }
+  
+  .tool-tip-text {
+    color: white;
+    visibility: hidden;
+    background-color: red;
+    padding: 6px;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1;
+    right: -25px;
+    bottom: 17px;
+  }
+  .tool-tip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: red transparent transparent transparent;
+  }  
+
+
+ 
+
+.validation{
+  color: red;
+  font-weight: bold;
+}

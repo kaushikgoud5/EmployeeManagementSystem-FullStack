@@ -1,0 +1,71 @@
+<div class="emp-inp-form">
+    <div class="inp-form-info">
+      <form action="" [formGroup]="roleReactiveForm">
+        <h4>Create New Roles</h4>
+        <div class="inp-form-rows role-form">
+          <div class="col-1">
+            <label for="">Role Name</label><br />
+            <input type="" name="rname" id="rname" placeholder="" formControlName="roleName"/>
+          </div>
+          <div class="col-2">
+            <label for="">Department</label><br />
+            <select name="dept" id="dept-role" formControlName="department">
+              <option value="" selected disabled>
+                Select your Department
+              </option>
+              <option value="" *ngFor="let department of departments " [ngValue]="department">{{department['departmentName']}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="roles-description">
+          <label for="">Description</label><br>
+            <textarea name="description" id="add-role-desc" cols="80" rows="7" placeholder="Text" class="text-area" formControlName="description"></textarea>
+        </div>
+        <div class="inp-form-rows inp-form-row-2">
+          <div class="col-2">
+            <label for="">Location</label><br />
+            <select name="location" id="location" formControlName="location">
+              <option value="" selected disabled>
+                Select your Location
+              </option>
+              <option *ngFor="let location of locations" [ngValue]="location">{{location['locationName']}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="inp-form-rows inp-form-row-2">
+          <div class="col-1">
+            <label for="">Assign employees</label><br />
+            <div class="assign-emp-drop-down" onclick="toggleAssignRoleDropdown(event)">
+              <div
+                class="d-flex g-05 jc-space-btwn align-items-center"
+>
+                <div>
+                  Search for an employee
+                </div>
+
+                <div class="dept-drop-down">
+                  <i class="ph ph-caret-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="inp-form-assign d-none d-flex jc-space-btwn" id="add-roles">
+              <div class="assign-left d-flex align-items-center g-05 ">
+                      <img src="../../../assets/images/user-table.jpg" width="25px" height="20px" alt="">
+                      <span >Kaushik Goud</span>
+              </div>
+              <div class="assign-right">
+                      <input type="checkbox" name="" id="">
+              </div>
+            </div> -->
+
+          </div>
+        </div>
+        <div class="inp-form-btns mt-20">
+          <button class="btn-dismiss padding-lr">Cancel</button>
+          <button class="btn-accept padding-lr" (click)="onClickAddRole()" [disabled]="roleReactiveForm.invalid">Add Role</button>
+        </div>
+      
+      </form>
+    </div>
+  </div>

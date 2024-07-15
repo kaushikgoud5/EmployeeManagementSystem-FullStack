@@ -1,0 +1,292 @@
+<div class="d-flex jc-space-btwn align-items-center mt-20">
+  <div class="breadcrumb-section">
+    @if(currentComponent==="_HomeComponent"){
+    <nav class="breadcrumb-nav">
+      <ul>
+        <li><a href="#">Employees</a></li>
+      </ul>
+    </nav>
+    <span class="breadcrumb-description"
+      >Find all of your company's employee accounts and their associated
+      roles.</span
+    >
+    } @else {
+    <nav class="breadcrumb-nav">
+      <ul>
+        <li><a href="#">Roles</a></li>
+      </ul>
+    </nav>
+    <span class="breadcrumb-description"
+      >All the roles are configured here</span
+    >
+    }
+  </div>
+  <div class="button-group d-flex">
+    <button
+      (click)="exportToCSV()"
+      class="btn-item btn-bg-white"
+      *ngIf="currentComponent === '_HomeComponent'"
+    >
+      <div>
+        <img src="../../../assets/images/Masked Icon.png" alt="" />
+      </div>
+      <span>EXPORT</span>
+    </button>
+    @if(currentComponent==="_HomeComponent"){
+    <a href="" class="td-none" routerLink="addEmployee">
+      <button class="btn-item btn-bg-red">
+        <div>
+          <i class="ph-bold ph-plus"></i>
+        </div>
+        <span> ADD EMPLOYEE </span>
+      </button>
+    </a>
+    } @else{
+    <a href="" class="td-none" routerLink="addRole">
+      <button class="btn-item btn-bg-red">
+        <div>
+          <i class="ph-bold ph-plus"></i>
+        </div>
+        <span> ADD ROLE </span>
+      </button>
+    </a>
+    }
+  </div>
+</div>
+
+<div class="alphabets-section" *ngIf="currentComponent === '_HomeComponent'">
+  <span class="c-pointer">
+    <img [src]="'../../../assets/images/filter.svg'" id="filter-icon" alt="" />
+  </span>
+  <div class="alphabets c-pointer" id="alphabets-display">
+    <ng-container *ngFor="let alphabet of alphabets">
+      <span
+        [id]="alphabet"
+        (click)="onClickAlphabet(alphabet)"
+        [ngClass]="isActive(alphabet) ? 'active' : ''"
+      >
+        {{ alphabet }}
+      </span>
+    </ng-container>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-options d-flex align-items-center">
+    <span class="filter-label">Filter</span>
+    <span class="filter-icon">
+      <i class="ph ph-funnel-simple"></i>
+    </span>
+    <div
+      class="dropdown-container w-5"
+      (click)="toggleStatusDropdown($event)"
+      #statusActive
+      *ngIf="currentComponent === '_HomeComponent'"
+    >
+      <div class="d-flex g-05 jc-space-btwn align-items-center" >
+        <div class="filter-title">
+          Status <span class="checked-count" id="no-of-checks-status"></span>
+        </div>
+        <div class="dept-drop-down">
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+      <div class="dept-drop w-5"  *ngIf="isStatusActive">
+        <div class="d-flex jc-space-btwn p-3" >
+          <div class="close-filter-sctn">
+            <img
+              src="../../../assets/images/x-circle-duotone.png"
+              alt=""
+              (click)="toggleStatusDropdown($event)"
+
+            />
+          </div>
+          <div class="checkbox-select-all" >
+            <input
+              type="checkbox"
+              #selectAll
+              [checked]=""
+              (click)="onClickSelectAll(selectAll, 'status')"
+            />
+          </div>
+        </div>
+        <div *ngFor="let status of status" >
+          <div class="d-flex jc-space-btwn p-3" #checkbox1>
+            <div class="w-5">
+              <span>{{ status }}</span>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                class="${className}"
+                #checkbox
+                id=""
+                (click)="
+                  onClickDropDownFilter(
+                    dropDownFilters.status,
+                    0,
+                    checkbox,
+                    status,
+                    'status'
+                  )
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dropdown-container w-7" #multiselectElement #departmentActive >
+      <div
+        class="d-flex g-05 jc-space-btwn align-items-center"
+        (click)="toggleDepartmentDropdown($event)"
+      >
+        <div class="filter-title">
+          <span *ngIf="selectedDepartmentCount === 0">Department</span>
+          <span
+            class="checked-count"
+            *ngIf="selectedDepartmentCount !== 0"
+            id="no-of-checks-dept"
+            >{{ selectedDepartmentCount }} items selected</span
+          >
+        </div>
+
+        <div class="dept-drop-down">
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+      <div class="dept-drop w-7"  *ngIf="isDepartmentActive">
+        <div class="d-flex jc-space-btwn p-3">
+          <div class="close-filter-sctn">
+            <img
+              src="../../../assets/images/x-circle-duotone.png"
+              alt=""
+              (click)="toggleDepartmentDropdown($event)"
+            />
+          </div>
+          <div class="checkbox-select-all">
+            <input
+              type="checkbox"
+              #selectAll
+              [checked]="isAllDepartmentsChecked"
+              (click)="onClickSelectAll(selectAll, 'department')"
+            />
+          </div>
+        </div>
+
+        <div *ngFor="let department of departments">
+          <div class="d-flex jc-space-btwn p-3">
+            <div class="w-5">
+              <span>{{ department.departmentName }}</span>
+            </div>
+            <div #checkbox1>
+              <input
+                type="checkbox"
+                class="${className}"
+                #checkbox
+                name="input"
+                [checked]="department.isChecked"
+                (click)="
+                  onClickDropDownFilter(
+                    dropDownFilters.department,
+                    department.departmentId,
+                    checkbox,
+                    departments,
+                    'Dept'
+                  )
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dropdown-container w-7" #locationActive>
+      <div
+        class="d-flex g-05 jc-space-btwn align-items-center"
+        (click)="toggleLocationDropdown($event)"
+      >
+        <div class="filter-title">
+          <span *ngIf="selectedLocationCount === 0">Location</span>
+
+          <span
+            class="checked-count"
+            *ngIf="selectedLocationCount !== 0"
+            id="no-of-checks-loc"
+            >{{ selectedLocationCount }} items selected</span
+          >
+        </div>
+
+        <div class="dept-drop-down">
+          <i class="ph ph-caret-down"></i>
+        </div>
+      </div>
+      <div class="dept-drop w-7"  *ngIf="isLocationActive">
+        <div class="d-flex jc-space-btwn p-3">
+          <div class="close-filter-sctn">
+            <img
+              src="../../../assets/images/x-circle-duotone.png"
+              alt=""
+              (click)="toggleLocationDropdown($event)"
+            />
+          </div>
+          <div class="checkbox-select-all">
+            <input
+              type="checkbox"
+              #selectAll
+              [checked]="isAllLocationsChecked"
+              (click)="onClickSelectAll(selectAll, 'location')"
+            />
+          </div>
+        </div>
+        <div *ngFor="let location of locations">
+          <div class="d-flex jc-space-btwn p-3">
+            <div class="w-5">
+              <span>{{ location.locationName }}</span>
+            </div>
+            <div #checkbox1>
+              <input
+                type="checkbox"
+                class="${className}"
+                id=""
+                [checked]="location.isChecked"
+                #checkbox
+                (click)="
+                  onClickDropDownFilter(
+                    dropDownFilters.location,
+                    location.locationId,
+                    checkbox,
+                    locations,
+                    'loc'
+                  )
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="filter-actions">
+    <button
+      class="filter-btns btn-reset"
+      id="btn-reset-filter"
+      (click)="resetFilterOptions()"
+    >
+      Reset
+    </button>
+    <button
+      class="filter-btns btn-apply {{
+        selectedDepartmentCount === 0 &&
+        selectedLocationCount === 0 &&
+        selectedStatusCount === 0
+          ? 'button-disabled'
+          : 'btn-enabled'
+      }}"
+      id="btn-filter-apply"
+      (click)="applyFiltersAndDisplayResults()"
+    >
+      Apply
+    </button>
+  </div>
+</div>

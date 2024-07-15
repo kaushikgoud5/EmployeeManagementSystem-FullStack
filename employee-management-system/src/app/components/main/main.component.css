@@ -1,0 +1,11 @@
+main{
+    display: flex;
+}
+section{
+    flex-grow: 1;
+    margin-left: 250px;
+    transition: all 1s liner;
+}
+.ml-100{
+    margin-left: 100px !important;
+}
